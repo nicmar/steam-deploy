@@ -72,49 +72,7 @@ cat << EOF > "manifest.vdf"
 EOF
 
 cat manifest.vdf
-echo ""
 
-find /  2>/dev/null | grep steam
-
-echo ""
-echo "#################################"
-echo "#    Copying SteamGuard Files   #"
-echo "#################################"
-echo ""
-
-#mkdir -p "$STEAM_HOME/config"
-mkdir -p "/home/runner/Steam/config"
-
-#echo "STEAM HOME = $STEAM_HOME"
-#find / -name steamapps 2>/dev/null
-
-#echo "Copying $STEAM_HOME/config/config.vdf..."
-#echo "$configVdf" | base64 -d > "$STEAM_HOME/config/config.vdf"
-#chmod 777 "$STEAM_HOME/config/config.vdf"
-
-#echo "Copying /home/runner/Steam/config/config.vdf..."
-#echo "$configVdf" | base64 -d > "/home/runner/Steam/config/config.vdf"
-#chmod 777 "/home/runner/Steam/config/config.vdf"
-
-
-#echo "######## ssfnFileContents ##########"
-#echo "$ssfnFileContents" 
-
-echo "Copying ssnfile to $STEAM_HOME/ssfnXXXXXX"
-echo "$ssfnFileContents" | base64 -d > "$STEAM_HOME/$ssfnFileName"
-chmod 777 "$STEAM_HOME/$ssfnFileName"
-
-echo "Copying ssnfile to /home/runner/Steam/ssfnXXXXXX..."
-echo "$ssfnFileContents" | base64 -d > "/home/runner/Steam/$ssfnFileName"
-chmod 777 "/home/runner/Steam/$ssfnFileName"
-
-echo "STEAM CMD = $STEAM_CMD"
-
-echo "### LS ###"
-ls -l /home/runner/Steam/
-
-echo "Finished Copying SteamGuard Files!"
-echo ""
 
 echo ""
 echo "#################################"
@@ -122,7 +80,7 @@ echo "#        Uploading build        #"
 echo "#################################"
 echo ""
 
-$STEAM_CMD +login "$username" "$password" +run_app_build $(pwd)/manifest.vdf +quit || (
+./steamcmd.sh +login "$username" "$password" +run_app_build $(pwd)/manifest.vdf +quit || (
     echo ""
     echo "#################################"
     echo "#             Errors            #"
