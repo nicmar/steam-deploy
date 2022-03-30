@@ -84,11 +84,11 @@ mkdir -p "$STEAM_HOME/config"
 mkdir -p "/home/runner/Steam/config"
 
 echo "Copying $STEAM_HOME/config/config.vdf..."
-echo "$configVdf" > "$STEAM_HOME/config/config.vdf"
+echo "$configVdf" | base64 -d > "$STEAM_HOME/config/config.vdf"
 chmod 777 "$STEAM_HOME/config/config.vdf"
 
 echo "Copying /home/runner/Steam/config/config.vdf..."
-echo "$configVdf" > "/home/runner/Steam/config/config.vdf"
+echo "$configVdf" | base64 -d > "/home/runner/Steam/config/config.vdf"
 chmod 777 "/home/runner/Steam/config/config.vdf"
 
 echo "Copying $STEAM_HOME/ssfn..."
