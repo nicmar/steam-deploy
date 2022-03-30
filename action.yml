@@ -78,5 +78,5 @@ runs:
         image: cm2network/steamcmd:latest
     - id: test-run
       run: |
-      echo "hello"
+        echo "hello"
       shell: bash
