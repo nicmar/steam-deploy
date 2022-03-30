@@ -74,6 +74,8 @@ EOF
 cat manifest.vdf
 echo ""
 
+find /  2>/dev/null | grep steam
+
 echo ""
 echo "#################################"
 echo "#    Copying SteamGuard Files   #"
