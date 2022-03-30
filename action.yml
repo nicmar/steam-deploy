@@ -79,4 +79,5 @@ runs:
     - id: test-run
       run: |
         echo "hello"
+        ls -l
       shell: bash
