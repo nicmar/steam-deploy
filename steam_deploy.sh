@@ -83,7 +83,7 @@ echo "#################################"
 echo ""
 
 #mkdir -p "$STEAM_HOME/config"
-#mkdir -p "/home/runner/Steam/config"
+mkdir -p "/home/runner/Steam/config"
 
 #echo "STEAM HOME = $STEAM_HOME"
 #find / -name steamapps 2>/dev/null
