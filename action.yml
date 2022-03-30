@@ -72,31 +72,11 @@ outputs:
 runs:
   using: "composite"
   steps:
-    - name: Init Steam Docker Image
+    - name: Run the build process with Docker
       uses: addnab/docker-run-action@v3
       with:
         image: cm2network/steamcmd:latest
-      env:
-        username: ${{ inputs.username }}
-        password: ${{ inputs.password }}
-        ssfnFileName: ${{ inputs.ssfnFileName }}
-        ssfnFileContents: ${{ inputs.ssfnFileContents }}
-        appId: ${{ inputs.appId }}
-        firstDepotIdOverride: ${{ inputs.firstDepotIdOverride }}
-        buildDescription: ${{ inputs.buildDescription }}
-        rootPath: ${{ inputs.rootPath }}
-        depot1Path: ${{ inputs.depot1Path }}
-        depot2Path: ${{ inputs.depot2Path }}
-        depot3Path: ${{ inputs.depot3Path }}
-        depot4Path: ${{ inputs.depot4Path }}
-        depot5Path: ${{ inputs.depot5Path }}
-        depot6Path: ${{ inputs.depot6Path }}
-        depot7Path: ${{ inputs.depot7Path }}
-        depot8Path: ${{ inputs.depot8Path }}
-        depot9Path: ${{ inputs.depot9Path }}
-        releaseBranch: ${{ inputs.releaseBranch }}
       run: |
-        chmod +x ${{ github.action_path }}/steam_deploy.sh
-        ${{ github.action_path }}/steam_deploy.sh
-        echo "::set-output name=manifest::$(pwd)/manifest.vdf"
-      shell: bash
+      echo ${{ secrets.STEAM2_SSFN_FILE_CONTENTS }} | base64 -d > /home/steam/Steam/${{ secrets.STEAM2_SSFN_FILE_NAME }}
+      ./steamcmd.sh +login ${{ secrets.STEAM2_USERNAME }} ${{ secrets.STEAM2_PASSWORD }} +run_app_build $(pwd)/manifest.vdf +quit
+
