@@ -72,11 +72,11 @@ outputs:
 runs:
   using: "composite"
   steps:
-    - name: Run the build process with Docker
+    - id: init-docker
       uses: addnab/docker-run-action@v3
       with:
         image: cm2network/steamcmd:latest
+    - id: test-run
       run: |
-      echo ${{ secrets.STEAM2_SSFN_FILE_CONTENTS }} | base64 -d > /home/steam/Steam/${{ secrets.STEAM2_SSFN_FILE_NAME }}
-      ./steamcmd.sh +login ${{ secrets.STEAM2_USERNAME }} ${{ secrets.STEAM2_PASSWORD }} +run_app_build $(pwd)/manifest.vdf +quit
-
+      echo "hello"
+      shell: bash
