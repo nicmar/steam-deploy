@@ -76,10 +76,6 @@ runs:
       uses: addnab/docker-run-action@v3
       with:
         image: cm2network/steamcmd:latest
-        run: |
-        ls -l
-              
-    - id: steam-deploy
       env:
         username: ${{ inputs.username }}
         password: ${{ inputs.password }}
