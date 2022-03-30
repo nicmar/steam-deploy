@@ -82,35 +82,36 @@ echo "#    Copying SteamGuard Files   #"
 echo "#################################"
 echo ""
 
-mkdir -p "$STEAM_HOME/config"
-mkdir -p "/home/runner/Steam/config"
+#mkdir -p "$STEAM_HOME/config"
+#mkdir -p "/home/runner/Steam/config"
 
-echo "######## configVdf ##########"
-echo "$configVdf"
-echo "$configVdf" | base64 -d
+#echo "STEAM HOME = $STEAM_HOME"
+#find / -name steamapps 2>/dev/null
 
-echo "STEAM HOME = $STEAM_HOME"
-find / -name steamapps 2>/dev/null
+#echo "Copying $STEAM_HOME/config/config.vdf..."
+#echo "$configVdf" | base64 -d > "$STEAM_HOME/config/config.vdf"
+#chmod 777 "$STEAM_HOME/config/config.vdf"
 
-echo "Copying $STEAM_HOME/config/config.vdf..."
-echo "$configVdf" | base64 -d > "$STEAM_HOME/config/config.vdf"
-chmod 777 "$STEAM_HOME/config/config.vdf"
-
-echo "Copying /home/runner/Steam/config/config.vdf..."
-echo "$configVdf" | base64 -d > "/home/runner/Steam/config/config.vdf"
-chmod 777 "/home/runner/Steam/config/config.vdf"
+#echo "Copying /home/runner/Steam/config/config.vdf..."
+#echo "$configVdf" | base64 -d > "/home/runner/Steam/config/config.vdf"
+#chmod 777 "/home/runner/Steam/config/config.vdf"
 
 
-echo "######## ssfnFileContents ##########"
-echo "$ssfnFileContents" 
+#echo "######## ssfnFileContents ##########"
+#echo "$ssfnFileContents" 
 
-echo "Copying $STEAM_HOME/ssfn... $ssfnFileName"
+echo "Copying ssnfile to $STEAM_HOME/ssfnXXXXXX"
 echo "$ssfnFileContents" | base64 -d > "$STEAM_HOME/$ssfnFileName"
 chmod 777 "$STEAM_HOME/$ssfnFileName"
 
-echo "Copying /home/runner/Steam/ssfn..."
+echo "Copying ssnfile to /home/runner/Steam/ssfnXXXXXX..."
 echo "$ssfnFileContents" | base64 -d > "/home/runner/Steam/$ssfnFileName"
 chmod 777 "/home/runner/Steam/$ssfnFileName"
+
+echo "STEAM CMD = $STEAM_CMD"
+
+echo "### LS ###"
+ls -l /home/runner/Steam/
 
 echo "Finished Copying SteamGuard Files!"
 echo ""
