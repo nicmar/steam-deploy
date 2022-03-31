@@ -83,17 +83,44 @@ runs:
 #        cat semicolon_delimited_script
 #      shell: bash
 
-    - name: Create Steamcmd Docker
-      uses: addnab/docker-run-action@v3
-      with:
-        image: cm2network/steamcmd:latest
-        options: -v ${{ github.workspace }}:/work -e "TEST=ABC"
+    - name: 'Build and deploy'
+      description: 'Build site with Zola and deploy to Netlify'
+      inputs:
+        auth_token:
+          description: 'Netlify auth token'
+          required: true
+        site_id:
+          description: 'Netlify site ID to deploy to'
+          required: true
+        deploy_dir:
+          description: 'Directory to deploy to netlify'
+          required: true
+        zola_version:
+          description: 'Version of zola to pull'
+          required: true
+          default: '0.12.2'
+      runs:
+        using: 'docker'
+        image: 'cm2network/steamcmd:latest'
         env:
-          USERNAME: ${{ inputs.username }}
-          
+          ZOLA_VERSION: ${{ inputs.zola_version }}
+          NETLIFY_AUTH_TOKEN: ${{ inputs.auth_token }}
+          NETLIFY_SITE_ID: ${{ inputs.site_id }}
+          NETLIFY_DEPLOY_DIR: ${{ inputs.deploy_dir }}
         run: |
-          echo ${{ inputs.username }}
-          /work/.github/workflows/script.sh
+          env
+      
+      #    - name: Create Steamcmd Docker
+#      uses: addnab/docker-run-action@v3
+#      with:
+#        image: cm2network/steamcmd:latest
+#        options: -v ${{ github.workspace }}:/work -e "TEST=ABC"
+#        env:
+#          USERNAME: ${{ inputs.username }}
+#          
+#        run: |
+#          echo ${{ inputs.username }}
+#          /work/.github/workflows/script.sh
 #          echo "----LIST action---"
 #          ls -l
 #          echo "------------------"
