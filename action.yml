@@ -90,15 +90,15 @@ runs:
         options: -v ${{ github.workspace }}:/work -e "USERNAME=${{ inputs.username }}"
 
         run: |
-          echo "----LIST action---"
           echo ${{ inputs.username }}
-          ls -l
-          echo "------------------"
-          echo "Github action path: ${{ github.action_path }}"
-          
-          chmod +x ${{ github.action_path }}/steam_deploy.sh
-          ${{ github.action_path }}/steam_deploy.sh
-          echo "::set-output name=manifest::$(pwd)/manifest.vdf"
+#          echo "----LIST action---"
+#          ls -l
+#          echo "------------------"
+#          echo "Github action path: ${{ github.action_path }}"
+#          
+#          chmod +x ${{ github.action_path }}/steam_deploy.sh
+#          ${{ github.action_path }}/steam_deploy.sh
+#          echo "::set-output name=manifest::$(pwd)/manifest.vdf"
 
 #          # run custom script
 #          /work/.github/workflows/script.sh
