@@ -72,16 +72,16 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - id: init-docker
-      uses: addnab/docker-run-action@v3
-      with:
-        image: cm2network/steamcmd:latest
-    - name: hello world
-      run: |
-        echo "hello"
-        ls -l
-        cat semicolon_delimited_script
-      shell: bash
+#    - id: init-docker
+#      uses: addnab/docker-run-action@v3
+#      with:
+#        image: cm2network/steamcmd:latest
+#    - name: hello world
+#      run: |
+#        echo "hello"
+#        ls -l
+#        cat semicolon_delimited_script
+#      shell: bash
 
     - name: Create Steamcmd Docker
       uses: addnab/docker-run-action@v3

@@ -73,6 +73,10 @@ EOF
 
 cat manifest.vdf
 
+env
+echo "----------------";
+echo "steam_deploy.sh in action completed"
+exit;
 
 echo ""
 echo "#################################"
