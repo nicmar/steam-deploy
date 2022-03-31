@@ -90,13 +90,17 @@ runs:
         options: -v ${{ github.workspace }}:/work -e ABC=123
 
         run: |
-          ls -l
-          echo "-----------------"
-          echo "ls /work"
-          ls -la /work/.github/workflows
+#          ls -l
+#          echo "-----------------"
+#          echo "ls /work"
+#          ls -la /work/.github/workflows
+#
+#          chmod +x "/work/.github/workflows/script.sh"
 
-          chmod +x "/work/.github/workflows/script.sh"
+          chmod +x ${{ github.action_path }}/steam_deploy.sh
+          ${{ github.action_path }}/steam_deploy.sh
+          echo "::set-output name=manifest::$(pwd)/manifest.vdf"
 
-          # run script
+          # run custom script
           /work/.github/workflows/script.sh
       
