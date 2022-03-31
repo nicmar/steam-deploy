@@ -1,6 +1,5 @@
 FROM cm2network/steamcmd:latest
 COPY entrypoint.sh /tmp/entrypoint.sh
-COPY entrypoint.sh /tmp/entrypoint2.sh
 USER root
-RUN ["chmod", "+x", "/tmp/entrypoint.sh"]
-ENTRYPOINT ["/tmp/entrypoint.sh"]
+RUN ["chmod", "+x", "/entrypoint.sh"]
+ENTRYPOINT ["/entrypoint.sh"]

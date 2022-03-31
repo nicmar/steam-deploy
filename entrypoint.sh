@@ -1,5 +1,4 @@
-#!/bin/bash -e
-set -e
+#!/usr/bin/env bash
 
 echo "ENTRYPOINT SCRIPT"
 env
