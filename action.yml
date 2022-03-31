@@ -93,21 +93,21 @@ runs:
           echo "----LIST action---"
           echo ${{ inputs.username }}
           ls -l
-#          echo "------------------"
-#          echo "Github action path: ${{ github.action_path }}"
-#          
-#          chmod +x ${{ github.action_path }}/steam_deploy.sh
-#          ${{ github.action_path }}/steam_deploy.sh
-#          echo "::set-output name=manifest::$(pwd)/manifest.vdf"
+          echo "------------------"
+          echo "Github action path: ${{ github.action_path }}"
+          
+          chmod +x ${{ github.action_path }}/steam_deploy.sh
+          ${{ github.action_path }}/steam_deploy.sh
+          echo "::set-output name=manifest::$(pwd)/manifest.vdf"
 
-          # run custom script
-          /work/.github/workflows/script.sh
-
-      #          ls -l
-      #          echo "-----------------"
-      #          echo "ls /work"
-      #          ls -la /work/.github/workflows
-      #
-      #          chmod +x "/work/.github/workflows/script.sh"
+#          # run custom script
+#          /work/.github/workflows/script.sh
+#
+#          #          ls -l
+#          #          echo "-----------------"
+#          #          echo "ls /work"
+#          #          ls -la /work/.github/workflows
+#          #
+#          #          chmod +x "/work/.github/workflows/script.sh"
 
       
