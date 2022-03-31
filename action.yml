@@ -87,7 +87,7 @@ runs:
       uses: addnab/docker-run-action@v3
       with:
         image: cm2network/steamcmd:latest
-        options: -v ${{ github.workspace }}:/work -e ABC=123
+        options: -v ${{ github.workspace }}:/work -e USERNAME=$username
 
         run: |
           echo "----LIST action---"
