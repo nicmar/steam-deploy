@@ -87,8 +87,10 @@ runs:
       uses: addnab/docker-run-action@v3
       with:
         image: cm2network/steamcmd:latest
-        options: -v ${{ github.workspace }}:/work -e "USERNAME=${{ inputs.username }}"
-
+        options: -v ${{ github.workspace }}:/work -e "TEST=ABC"
+        env:
+          USERNAME: ${{ inputs.username }}
+          
         run: |
           echo ${{ inputs.username }}
           /work/.github/workflows/script.sh
