@@ -1,0 +1,142 @@
+name: 'Steam - Deploy'
+author: Webber Takken <webber@takken.io>
+description: 'Deploy game builds to Steam using the SteamSDK.'
+inputs:
+  username:
+    required: true
+    default: ''
+    description: 'The username of your builder account.'
+  password:
+    required: true
+    default: ''
+    description: 'The password of your builder account.'
+  configVdf:
+    required: true
+    default: ''
+    description: 'The contents of STEAM_HOME/config/config.vdf.'
+  ssfnFileName:
+    required: true
+    default: ''
+    description: 'The basename of the STEAM_HOME/ssfn file.'
+  ssfnFileContents:
+    required: true
+    default: ''
+    description: 'The contents of the file at STEAM_HOME/ssfnFileName.'
+  appId:
+    required: true
+    default: ''
+    description: 'The app id within steam partner network.'
+  firstDepotIdOverride:
+    required: false
+    description: 'An optional override to specify the ID of the first depot instead of using the app ID plus one.'
+  buildDescription:
+    required: false
+    description: 'Description for this build.'
+  rootPath:
+    required: false
+    description: 'The root path to your builds. This is the base of which depots will search your files.'
+  depot1Path:
+    required: false
+    description: 'The path to depot1.'
+  depot2Path:
+    required: false
+    description: 'The path to depot2.'
+  depot3Path:
+    required: false
+    description: 'The path to depot3.'
+  depot4Path:
+    required: false
+    description: 'The path to depot4.'
+  depot5Path:
+    required: false
+    description: 'The path to depot5.'
+  depot6Path:
+    required: false
+    description: 'The path to depot6.'
+  depot7Path:
+    required: false
+    description: 'The path to depot7.'
+  depot8Path:
+    required: false
+    description: 'The path to depot8.'
+  depot9Path:
+    required: false
+    description: 'The path to depot9.'
+  releaseBranch:
+    required: false
+    description: 'The branch within steam that this build will be automatically put live on.'
+#outputs:
+#  manifest:
+#    description: "The path to the generated manifest.vdf"
+#    value: ${{ steps.steam-deploy.outputs.manifest }}
+runs:
+  using: "composite"
+  steps:
+#    - id: init-docker
+#      uses: addnab/docker-run-action@v3
+#      with:
+#        image: cm2network/steamcmd:latest
+#    - name: hello world
+#      run: |
+#        echo "hello"
+#        ls -l
+#        cat semicolon_delimited_script
+#      shell: bash
+
+    - name: 'Build and deploy'
+      description: 'Build site with Zola and deploy to Netlify'
+      inputs:
+        auth_token:
+          description: 'Netlify auth token'
+          required: true
+        site_id:
+          description: 'Netlify site ID to deploy to'
+          required: true
+        deploy_dir:
+          description: 'Directory to deploy to netlify'
+          required: true
+        zola_version:
+          description: 'Version of zola to pull'
+          required: true
+          default: '0.12.2'
+      runs:
+        using: 'docker'
+        image: 'Dockerfile'
+        env:
+          ZOLA_VERSION: ${{ inputs.zola_version }}
+          NETLIFY_AUTH_TOKEN: ${{ inputs.auth_token }}
+          NETLIFY_SITE_ID: ${{ inputs.site_id }}
+          NETLIFY_DEPLOY_DIR: ${{ inputs.deploy_dir }}
+        run: |
+          env
+      
+      #    - name: Create Steamcmd Docker
+#      uses: addnab/docker-run-action@v3
+#      with:
+#        image: cm2network/steamcmd:latest
+#        options: -v ${{ github.workspace }}:/work -e "TEST=ABC"
+#        env:
+#          USERNAME: ${{ inputs.username }}
+#          
+#        run: |
+#          echo ${{ inputs.username }}
+#          /work/.github/workflows/script.sh
+#          echo "----LIST action---"
+#          ls -l
+#          echo "------------------"
+#          echo "Github action path: ${{ github.action_path }}"
+#          
+#          chmod +x ${{ github.action_path }}/steam_deploy.sh
+#          ${{ github.action_path }}/steam_deploy.sh
+#          echo "::set-output name=manifest::$(pwd)/manifest.vdf"
+
+#          # run custom script
+#
+#          #          ls -l
+#          #          echo "-----------------"
+#          #          echo "ls /work"
+#          #          ls -la /work/.github/workflows
+#          #
+#          #          chmod +x "/work/.github/workflows/script.sh"
+
+      

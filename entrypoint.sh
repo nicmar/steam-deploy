@@ -1,0 +1,2 @@
+echo "ENTRYPOINT SCRIPT"
+env
