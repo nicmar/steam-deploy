@@ -90,8 +90,8 @@ runs:
         options: -v ${{ github.workspace }}:/work -e "USERNAME=${{ inputs.username }}"
 
         run: |
-          echo ${{ inputs.username }}
           echo "----LIST action---"
+          echo ${{ inputs.username }}
           ls -l
 #          echo "------------------"
 #          echo "Github action path: ${{ github.action_path }}"
